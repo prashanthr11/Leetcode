@@ -1,0 +1,95 @@
+class MyCircularDeque:
+
+    def __init__(self, k: int):
+        """
+        Initialize your data structure here. Set the size of the deque to be k.
+        """
+        self.l = list()
+        self.ln = 0
+        self.max_len = k
+
+    def insertFront(self, val: int) -> bool:
+        """
+        Adds an item at the front of Deque. Return true if the operation is successful.
+        """
+        if self.ln != self.max_len:
+            self.l.insert(0, ListNode(val))
+            self.ln += 1
+            return True
+        return False
+        
+
+    def insertLast(self, val: int) -> bool:
+        """
+        Adds an item at the rear of Deque. Return true if the operation is successful.
+        """
+        if self.ln != self.max_len:
+            self.l.append(ListNode(val))
+            self.ln += 1
+            return True
+        return False
+
+    def deleteFront(self) -> bool:
+        """
+        Deletes an item from the front of Deque. Return true if the operation is successful.
+        """
+        if self.ln:
+            self.l.pop(0)
+            self.ln -= 1
+            return True
+        return False
+        
+
+    def deleteLast(self) -> bool:
+        """
+        Deletes an item from the rear of Deque. Return true if the operation is successful.
+        """
+        if self.ln:
+            self.l.pop()
+            self.ln -= 1
+            return True
+        return False
+        
+
+    def getFront(self) -> int:
+        """
+        Get the front item from the deque.
+        """
+        if self.ln:
+            return self.l[0].val
+        return -1
+        
+
+    def getRear(self) -> int:
+        """
+        Get the last item from the deque.
+        """
+        if self.ln:
+            return self.l[-1].val
+        return -1
+
+    def isEmpty(self) -> bool:
+        """
+        Checks whether the circular deque is empty or not.
+        """
+        return True if not self.ln else False
+
+    def isFull(self) -> bool:
+        """
+        Checks whether the circular deque is full or not.
+        """
+        if self.ln == self.max_len:
+            return True
+        return False
+
+
+# Your MyCircularDeque object will be instantiated and called as such:
+# obj = MyCircularDeque(k)
+# param_1 = obj.insertFront(value)
+# param_2 = obj.insertLast(value)
+# param_3 = obj.deleteFront()
+# param_4 = obj.deleteLast()
+# param_5 = obj.getFront()
+# param_6 = obj.getRear()
+# param_7 = obj.isEmpty()
+# param_8 = obj.isFull()
