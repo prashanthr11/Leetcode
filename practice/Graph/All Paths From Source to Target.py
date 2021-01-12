@@ -1,26 +1,21 @@
-from collections import defaultdict as dt
-
 class Solution:
     def allPathsSourceTarget(self, a: List[List[int]]) -> List[List[int]]:
-        def dfs(root, l, lst):
-            if len(d[root]):
-                l.append(root)
-                for i in d[root]:
-                    dfs(i, l, lst)
-                l.pop()
-            else:
-                if root == lst:
-                    nonlocal ans
-                    ans.append(l + [root])
-                elif lst in l:
-                    ans.append(l[:l.index(lst) + 1])
+
+        # Time: O(2 ^ N) If all the nodes are connected i.e., for every i < j, there an outgoing path from i to j.
+        # Space: O(1)
+
+        ret, ln = list(), len(a)
+
+        def solve(s, t, l, path):
+            if s == t:
+                nonlocal ret
+                ret.append(path + [s])
                 return
-            
-             
-        d = dt(list)
-        for i in range(len(a)):
-            d[i] = a[i]
-        ans, l = list(), list()
-        lst = len(a) - 1
-        dfs(0, l, lst)
-        return ans
+
+            for i in l:
+                solve(i, t, a[i], path + [s])
+
+
+        solve(0, ln - 1, a[0], [])
+
+        return ret
